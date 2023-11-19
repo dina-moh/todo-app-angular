@@ -1,0 +1,17 @@
+<!-- todo-list.component.html -->
+<div *ngIf="userId !== null" class="container mt-4">
+    <ng-container *ngIf="userId <= 5; else forbidden">
+        <h2>To-Do List for User {{ userId }}</h2>
+        <ul class="list-group">
+            <li *ngFor="let todo of todos" class="list-group-item">
+                {{ todo.title }}
+                <button class="btn btn-danger btn-sm float-right" (click)="deleteTodo(todo.id)">Delete</button>
+            </li>
+        </ul>
+    </ng-container>
+    <ng-template #forbidden>
+        <div class="alert alert-danger" role="alert">
+            Forbidden!
+        </div>
+    </ng-template>
+</div>

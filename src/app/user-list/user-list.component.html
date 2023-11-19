@@ -1,0 +1,10 @@
+<!-- user-list.component.html -->
+<div class="container mt-4">
+    <h2>User List</h2>
+    <select class="form-control" (change)="onSelectUser($event)">
+      <option value="">Select a user</option>
+      <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+    </select>
+</div>
+
+<app-todo-list *ngIf="selectedUserId !== null" [userId]="selectedUserId"></app-todo-list>
