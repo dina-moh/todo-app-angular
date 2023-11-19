@@ -1,5 +1,5 @@
 // user-list.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DataService } from '../data.service';
 import { User } from '../user.model';
 
@@ -12,6 +12,7 @@ export class UserListComponent implements OnInit {
   users: User[] = [];
   selectedUserId: number | null = null;
 
+  @Output() updateUserAtParent = new EventEmitter<any>();
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
@@ -24,5 +25,6 @@ export class UserListComponent implements OnInit {
     const userId = event?.target?.value || null;
     console.log('Selected User ID:', userId);
     this.selectedUserId = userId;
+    this.updateUserAtParent.emit(this.selectedUserId);
   }
 }
